@@ -106,3 +106,7 @@
             </div>
  
 @endsection
+
+@section('page_js')
+<script src="{{asset('assets')}}/admin/js/admin.js?{{time()}}"></script>
+@endsection

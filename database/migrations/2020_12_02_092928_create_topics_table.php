@@ -20,6 +20,7 @@ class CreateTopicsTable extends Migration
             $table->string('topic_image');
             $table->string("topic_description");
             $table->integer('status')->default(1);
+            $table->integer('order_priority')->nullable();
             $table->timestamps();
             $table->foreign('chapter_id')->references('id')->on('chapters')->onDelete('cascade');
         });

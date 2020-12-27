@@ -8,13 +8,15 @@
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Edumin - Bootstrap Admin Dashboard </title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{asset('assets')}}/admin/images/favicon.png">
 	<link rel="stylesheet" href="{{asset('assets')}}/admin/vendor/bootstrap-select/dist/css/bootstrap-select.min.css?{{time()}}">
     <link href="{{asset('assets')}}/admin/vendor/datatables/css/jquery.dataTables.min.css?{{time()}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('assets')}}/admin/css/style.css?{{time()}}">
-	<link rel="stylesheet" href="{{asset('assets')}}/admin/css/skin.css?{{time()}}">
+    <link rel="stylesheet" href="{{asset('assets')}}/admin/css/skin.css?{{time()}}">
+    @yield('page_css');
 </head>
 <body>
 
@@ -220,9 +222,12 @@
     ***********************************-->
     <!-- Required vendors -->
     <script src="{{asset('assets')}}/admin/vendor/global/global.min.js?{{time()}}"></script>
-	<script src="{{asset('assets')}}/admin/vendor/bootstrap-select/dist/js/bootstrap-select.min.js?{{time()}}"></script>
+	<!-- <script src="{{asset('assets')}}/admin/vendor/bootstrap-select/dist/js/bootstrap-select.min.js?{{time()}}"></script> -->
 	<script src="{{asset('assets')}}/admin/js/custom.min.js?{{time()}}"></script>
-    <script src="{{asset('assets')}}/admin/js/admin.js?{{time()}}"></script>
+    @yield('page_js');
+    
+  
+    
 		
     <!-- Chart Morris plugin files -->
     <script src="{{asset('assets')}}/admin/vendor/raphael/raphael.min.js?{{time()}}"></script>

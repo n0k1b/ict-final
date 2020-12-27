@@ -20,7 +20,29 @@
                     @endforeach
                 </ul>
             </div>
-     @endif
+	 @endif                    
+                                    <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
+                                        <div class="modal-dialog modal-sm">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Update Order Priority</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+												<div class="form-group">
+												<label class="form-label">Order No</label>
+												<input type="number" class="form-control" name="order_priority" id="order_no">
+												<input type="hidden"  id="content_id">
+											</div>
+												</div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-primary" onclick="save_order_priority()">Save changes</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 				<div class="row page-titles mx-0">
                     <div class="col-sm-6 p-md-0">
                         <div class="welcome-text">
@@ -44,7 +66,7 @@
 								<div class="card">
 									<div class="card-header">
 										<h4 class="card-title"></h4>
-										<a href="{{route('add_chapter_content_interface')}}" class="btn btn-primary">+ Add new</a>
+										<a href="{{route('add_topic_content_interface')}}" class="btn btn-primary">+ Add new</a>
 									</div>
 									<div class="card-body">
 										<div class="table-responsive">
@@ -53,13 +75,14 @@
 													<tr>
 														<th>#</th>
 														<th>Chapter Name</th>
+                                                        <th>Topic Name</th>
 														<th>Description</th>
 														
-														<th>Image</th>
 														<th>Active Status</th>
+														<th>Order Priority</th>
 					
                                                         <th>Content Edit</th>
-                                                        <th>Image Edit</th>
+                                                        
 													</tr>
 												</thead>
 												<tbody>
@@ -70,23 +93,22 @@
 													$checked = $content->status=='1'?'checked':'';
 													?>
 														<td><strong>{{$content->sl_no}}</strong></td>
-														<td>{{$content->chapter_name}}</td>
-														<td>{{$content->chapter_description}}</td>
+														<td>{{$content->chapter->chapter_name}}</td>
+                                                        <td>{{$content->topic_name}}</td>
+														<td>{{$content->topic_description}}</td>
 													
 														
-                                                        <td><img  width="100" src="../{{$content->chapter_image}}"  alt=""></td>
+                                                        
 														<td> <label class="switch">
-															<input type="checkbox"  onclick="chapter_content_active_status({{$content->id}})" {{$checked}}>
+															<input type="checkbox"  onclick="topic_content_active_status({{$content->id}})" {{$checked}}>
 																<span class="slider round"></span>
 															</label></td>
+														<td>{{$content->order_priority}} &nbsp <span> <a href="javascript:void(0);" onclick="topic_priority_edit({{{$content->id}}})" class="btn btn-sm btn-info"><i class="la la-pencil"></i></a></span></td>
 														<td>
-															<a href="edit_chapter_content/{{$content->id}}" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a>
-															<a href="javascript:void(0);" class="btn btn-sm btn-danger" onclick="chapter_content_delete({{$content->id}})"><i class="la la-trash-o"></i></a>
+															<a href="edit_topic_content/{{$content->id}}" class="btn btn-sm btn-primary"><i class="la la-pencil"></i></a>
+															<a href="javascript:void(0);" class="btn btn-sm btn-danger" onclick="topic_content_delete({{$content->id}})"><i class="la la-trash-o"></i></a>
                                                         </td>
-                                                        <td>
-															<a href="edit_chapter_image/{{$content->id}}" class="btn btn-sm btn-info"><i class="la la-pencil"></i></a>
-									
-														</td>												
+                                                       										
 													</tr>
 												
 												@endforeach

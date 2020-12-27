@@ -7,5 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class topic extends Model
 {
-    use HasFactory;
+    protected $guarded = [];
+    public function chapter()
+    {
+        return $this->belongsTo('App\Models\chapter','chapter_id','id');
+    }
 }

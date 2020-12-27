@@ -45,6 +45,36 @@ Route::group(['prefix' => 'admin'], function()
 
     //chapter end
 
+    //topic start
+
+    Route::get('topic_content','AdminController@show_topic_content')->name('topic_content');
+    Route::get('add_topic_content','AdminController@add_topic_content_interface')->name('add_topic_content_interface');
+    Route::post('add_topic_content','AdminController@add_topic_content')->name('add_topic_content');
+    Route::get('edit_topic_content/{id}','AdminController@edit_topic_content_interface')->name('edit_topic_content_interface');
+    Route::get('edit_topic_image/{id}','AdminController@edit_topic_image_interface')->name('edit_topic_image_interface');
+    Route::get('topic_content_active_status_update/{id}','AdminController@topic_content_active_status_update')->name('topic_content_active_status_update');
+    Route::get('topic_content_delete/{id}','AdminController@topic_content_delete')->name('topic_content_delete');
+    Route::post('edit_topic_content','AdminController@edit_topic_content')->name('edit_topic_content');
+    Route::post('edit_topic_image','AdminController@edit_topic_image')->name('edit_topic_image');
+    Route::post('save_order_priority','AdminController@save_order_priority')->name('save_order_priority');
+
+    //topic end
+
+    //content start
+
+    Route::get('content_home','AdminController@content_home')->name('content_home');
+    Route::get('get_chapter','AdminController@get_chapter')->name('get_chapter');
+    Route::post('get_topic','AdminController@get_topic')->name('get_topic');
+    Route::view('content_main','admin.content_main');
+    Route::post('show_content','AdminController@show_content')->name('show_content');
+    Route::post('get_content','AdminController@get_content')->name('get_content');
+    Route::post('add_content_text','AdminController@add_content_text')->name('add_content_text');
+    Route::post('add_content_image','AdminController@add_content_image')->name('add_content_image');
+    Route::post('add_content_header','AdminController@add_content_header')->name('add_content_header');
+    Route::post('delete_content','AdminController@delete_content')->name('delete_content');
+
+    
+
 
 });
 

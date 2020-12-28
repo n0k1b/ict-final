@@ -95,7 +95,7 @@
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="form-group">
                                         <label class="form-label">Header</label>
-                                        <input type="text" class="form-control" id= />
+                                        <input type="text" class="form-control" id= "content_header"/>
                                         <input type="hidden" id="hidden_order_no">
                                     </div>
                                 </div>
@@ -131,13 +131,13 @@
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="form-group">
                                         <label class="form-label">Description</label>
-                                        <textarea class="form-control" rows="6" id="content_text"></textarea>
+                                        <textarea class="form-control" rows="6" id="content_text_for_update"></textarea>
                                         <input type="hidden" id="hidden_content_id">
                                     </div>
                                 </div>
 
                                 <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <button type="button" style="float:right" onclick="add_content_text()" class="btn btn-primary">Submit</button>
+                                    <button type="button" style="float:right" onclick="edit_content_text()" class="btn btn-primary">Submit</button>
                                 </div>
                             </div>
                         
@@ -169,12 +169,12 @@
                         <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="form-group fallback w-100">
-                                        <input type="file" id="image" name="image"  accept="image/*" multiple required />
+                                        <input type="file" id="image_for_update" name="image"  accept="image/*" multiple required />
                                         <input type="hidden" id="hidden_content_id">
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <button type="button" class="btn btn-primary"  onclick="add_content_image()"  style="float:right">Submit</button>
+                                    <button type="button" class="btn btn-primary"  onclick="edit_content_image()"  style="float:right">Submit</button>
                                     
                                 </div>
                             </div>
@@ -208,13 +208,13 @@
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="form-group">
                                         <label class="form-label">Header</label>
-                                        <input type="text" class="form-control" id= />
+                                        <input type="text" class="form-control" id="content_header_for_update" />
                                         <input type="hidden" id="hidden_content_id">
                                     </div>
                                 </div>
 
                                 <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <button type="button" class="btn btn-primary"  onclick="add_content_header()"  style="float:right">Submit</button>
+                                    <button type="button" class="btn btn-primary"  onclick="edit_content_header()"  style="float:right">Submit</button>
                                    
                                 </div>
                             </div>

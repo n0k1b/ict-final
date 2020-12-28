@@ -7,5 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class objective_question extends Model
 {
-    use HasFactory;
+    protected $guarded = [];
+    public function topic()
+    {
+        return $this->belongsTo('App\Models\topic','topic_id','id');
+    }
 }

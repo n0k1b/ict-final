@@ -73,7 +73,35 @@ Route::group(['prefix' => 'admin'], function()
     Route::post('add_content_header','AdminController@add_content_header')->name('add_content_header');
     Route::post('delete_content','AdminController@delete_content')->name('delete_content');
 
-    
+    Route::post('edit_content_text','AdminController@edit_content_text')->name('edit_content_text');
+    Route::post('edit_content_image','AdminController@edit_content_image')->name('edit_content_image');
+    Route::post('edit_content_header','AdminController@edit_content_header')->name('edit_content_header');
+    Route::get('get_content_for_update/{id}','AdminController@get_content_for_update')->name('get_content_for_update');
+
+    //content end
+
+
+    //subjective question start
+        Route::get('subjective_question_home','AdminController@show_subjective_question')->name('subjective_question_home');
+        Route::get('add_subjective_question','AdminController@add_subjective_question_interface')->name('add_subjective_question_interface');
+        Route::post('add_subjective_question_text','AdminController@add_subjective_question_text')->name('add_subjective_question_text');
+        Route::post('add_subjective_question_image','AdminController@add_subjective_question_image')->name('add_subjective_question_image');
+        Route::get('subjective_question_delete/{id}','AdminController@subjective_question_delete')->name('subjective_question_delete');
+
+        //Route::post('show_subjective_question','AdminController@show_subjective_question')->name('show_subjective_question');
+
+
+    //subjective question end
+
+    //objective question start
+
+    Route::get('objective_question_home','AdminController@show_objective_question')->name('objective_question_home');
+    Route::get('add_objective_question','AdminController@add_objective_question_interface')->name('add_objective_question_interface');
+    Route::post('add_objective_question_text','AdminController@add_objective_question_text')->name('add_objective_question_text');
+    Route::post('add_objective_question_image','AdminController@add_objective_question_image')->name('add_objective_question_image');
+    Route::get('objective_question_delete/{id}','AdminController@objective_question_delete')->name('objective_question_delete');
+
+    //Objective question end
 
 
 });

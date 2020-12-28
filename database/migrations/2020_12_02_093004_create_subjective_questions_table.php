@@ -16,12 +16,16 @@ class CreateSubjectiveQuestionsTable extends Migration
         Schema::create('subjective_questions', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('topic_id')->unsigned();
-            $table->string('question_type');
+           
             $table->string('paragraph');
-            $table->string('question');
-            $table->string('answer');
+            $table->string('question1');
+            $table->string('question2');
+            $table->string('question3');
+            $table->string('question4');
+            
             $table->string('tag')->nullable();
             $table->integer('status')->default(0);
+            $table->string('paragraph_type');
             $table->timestamps();
             $table->foreign('topic_id')->references('id')->on('topics')->onDelete('cascade');
         });

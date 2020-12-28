@@ -6,6 +6,9 @@ use App\Models\main_table;
 use App\Models\chapter;
 use App\Models\topic;
 use App\Models\content;
+use App\Models\subjective_question;
+use App\Models\objective_question;
+
 
 class AdminController extends Controller
 {
@@ -426,19 +429,19 @@ class AdminController extends Controller
                 $order_priority = $content->priority;
                 if($content->type=="header")
                 {
-                    $type = 'header';
+                    $type = 1;
                     $value='<h4><b>'.$content->value.'</b></h4>';
                 }
                 else if($content->type=="text")
                 { 
-                    $type = 'text';
+                    $type = 2;
                     $value='<p>'.$content->value.'</p>';
 
                 }
 
                 else if($content->type=="image")
                 { 
-                    $type = 'image';
+                    $type = 3;
                     $image = '../'.$content->value;
                     $value='<img src="'.$image.'" height="200px" width="300px">';
 
@@ -465,7 +468,7 @@ class AdminController extends Controller
                     <div class="card-body">
                         <div class="content_action">
                         <a  href="javascript:void(0);" class="btn btn-sm btn-primary" onclick="add_content_modal('.$order_priority.')"><i class="la la-plus"></i></a>
-                        <a href="javascript:void(0);" class="btn btn-sm btn-primary" onclick="edit_content_modal('.$content->id.','."$content->type".')"><i class="la la-pencil"></i></a>
+                        <a href="javascript:void(0);" class="btn btn-sm btn-primary" onclick="edit_content_modal('.$content->id.','.$type.')"><i class="la la-pencil"></i></a>
                         <a href="javascript:void(0);" class="btn btn-sm btn-danger" onclick="delete_content('.$content->id.')"><i class="la la-trash-o"></i></a>
                         </div>
                     </div>
@@ -557,7 +560,17 @@ class AdminController extends Controller
             $id = $request->id;
             //file_put_contents('test.txt',$id);
             
-           $order_no = content::where('id',$id)->first()->priority;
+           $content_query = content::where('id',$id)->first();
+           $order_no = $content_query->priority;
+          // file_put_contents('test.txt',$order_no);
+           if($content_query->type =="text")
+           {
+               $value = $content_query->value;
+             
+               unlink(public_path('../' . $value));
+
+           }
+           
             $contents = content::where('topic_id',$request->topic_id)->where('priority','>',$order_no)->get();
             foreach($contents as $content)
             {
@@ -566,9 +579,152 @@ class AdminController extends Controller
             }
             content::where('id',$id)->delete();
         }
+
+        public function edit_content_text(Request $request)
+        {
+            $id = $request->id;
+            $content_text= $request->content_text;
+            content::where('id',$id)->update(['value'=>$content_text]);
+        }
+
+        public function edit_content_header(Request $request)
+        {
+            $id = $request->id;
+            $content_text= $request->content_text;
+            content::where('id',$id)->update(['value'=>$content_text]);
+        }
+
+        public function edit_content_image(Request $request)
+        {
+            $id = $request->id;
+            $image = time().'.'.request()->file->getClientOriginalExtension();
+            $content_text = 'image/content_image/'.$image;
+            // /file_put_contents('test.txt',$request->topic_id." ".$request->order_no." ".$image);
+           
+            $request->file->move(public_path('../image/content_image') , $image);
+         
+            content::where('id',$id)->update(['value'=>$content_text]);
+        }
+        public function get_content_for_update(Request $request)
+        {
+            $id = $request->id;
+            $data = content::where('id',$id)->first()->value;
+            return $data;
+        }
      
       
     //Content End
+
+    //subjective question start
+
+        public function subjective_question_home()
+        {
+            return view('admin.subjective_question_home');
+        }
+
+        public function show_subjective_question()
+        {
+          
+            $contents = subjective_question::get();
+            $i=1;
+                foreach ($contents as $content)
+            {
+                $content['sl_no'] = $i++;
+            }
+           return view('admin.all_subjective_question',['contents'=>$contents]);
+        }
+        
+        public function add_subjective_question_interface()
+        {
+            return view('admin.add_subjective_question');
+        }
+
+        public function add_subjective_question_text(Request $request)
+        {
+            subjective_question::create($request->all());
+            return redirect()
+            ->route('subjective_question_home')
+            ->with('success', "Content Added Successfully");
+        }
+
+        public function add_subjective_question_image(Request $request)
+        {
+            $image = time() . '.' . request()
+            ->image
+            ->getClientOriginalExtension();
+
+        $request
+            ->image
+            ->move(public_path('../image/question_image') , $image);
+         $request['paragraph'] = "image/question_image/" . $image;
+            subjective_question::create($request->except('image'));
+            return redirect()
+            ->route('subjective_question_home')
+            ->with('success', "Content Added Successfully");
+        }
+        
+        public function subjective_question_delete(Request $request)
+        {
+            $id = $request->id;
+            subjective_question::where('id',$id)->delete();
+        }
+
+    //subjective question end
+
+    //objective question start
+    public function objective_question_home()
+    {
+        return view('admin.objective_question_home');
+    }
+
+    public function show_objective_question()
+    {
+      
+        $contents = objective_question::get();
+        $i=1;
+            foreach ($contents as $content)
+        {
+            $content['sl_no'] = $i++;
+        }
+       return view('admin.all_objective_question',['contents'=>$contents]);
+    }
+    
+    public function add_objective_question_interface()
+    {
+        return view('admin.add_objective_question');
+    }
+
+    public function add_objective_question_text(Request $request)
+    {
+        objective_question::create($request->all());
+        return redirect()
+        ->route('objective_question_home')
+        ->with('success', "Content Added Successfully");
+    }
+
+    public function add_objective_question_image(Request $request)
+    {
+        $image = time() . '.' . request()
+        ->image
+        ->getClientOriginalExtension();
+
+    $request
+        ->image
+        ->move(public_path('../image/question_image') , $image);
+     $request['paragraph'] = "image/question_image/" . $image;
+        objective_question::create($request->except('image'));
+        return redirect()
+        ->route('objective_question_home')
+        ->with('success', "Content Added Successfully");
+    }
+    
+    public function objective_question_delete(Request $request)
+    {
+        $id = $request->id;
+        objective_question::where('id',$id)->delete();
+    }
+
+    //objective question end
 
 
 }

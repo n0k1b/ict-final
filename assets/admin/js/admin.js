@@ -142,4 +142,42 @@ function save_order_priority()
 
 }
 
+function subjective_question_delete(id)
+{
+    var conf=confirm('Are you sure?');
+    
+    if(conf==true){
+    $.ajax({
+        processData: false,
+        contentType: false,
+        type: 'GET',
+        url: 'subjective_question_delete/'+id,
+        success: function (data) {
+           alert('Content Delete Successfully')
+           location.reload();
+            
+        }
+    })
+}
+}
+
+function objective_question_delete(id)
+{
+    var conf=confirm('Are you sure?');
+    
+    if(conf==true){
+    $.ajax({
+        processData: false,
+        contentType: false,
+        type: 'GET',
+        url: 'objective_question_delete/'+id,
+        success: function (data) {
+           alert('Content Delete Successfully')
+           location.reload();
+            
+        }
+    })
+}
+}
+
 

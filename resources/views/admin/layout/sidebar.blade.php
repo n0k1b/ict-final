@@ -26,6 +26,18 @@
 							<span class="nav-text">Content</span>
 						</a>
 					</li>
+
+					<li><a class="ai-icon" href="{{route('subjective_question_home')}}" aria-expanded="false">
+							<i class="la la-calendar"></i>
+							<span class="nav-text">Subjective question</span>
+						</a>
+					</li>
+
+					<li><a class="ai-icon" href="{{route('objective_question_home')}}" aria-expanded="false">
+							<i class="la la-calendar"></i>
+							<span class="nav-text">Objective question</span>
+						</a>
+					</li>
 					
 					
 					

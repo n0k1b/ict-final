@@ -226,7 +226,7 @@
 	<script src="{{asset('assets')}}/admin/js/custom.min.js?{{time()}}"></script>
     @yield('page_js');
     
-  
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     
 		
     <!-- Chart Morris plugin files -->

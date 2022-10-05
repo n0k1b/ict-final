@@ -74,7 +74,8 @@
 														<td>{{$content->main_topic_description}}</td>
 													
 														<td>{{$content->main_topic_button_text}}</td>
-                                                        <td><img  width="100" src="../{{$content->main_topic_image}}"  alt=""></td>
+														<td><lottie-player src="../{{$content->main_topic_image}}" background="transparent"  speed="1"  style="width: 60px; height: 60px;" loop controls autoplay></lottie-player></td>
+                                                        <!-- <td><img  width="100" src="../{{$content->main_topic_image}}"  alt=""></td> -->
 														<td> <label class="switch">
 															<input type="checkbox"  onclick="home_page_content_active_status({{$content->id}})" {{$checked}}>
 																<span class="slider round"></span>

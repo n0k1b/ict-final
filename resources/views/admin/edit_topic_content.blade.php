@@ -29,7 +29,7 @@
 									<div class="row">
 
                                     <div class="col-lg-12 col-md-12 col-sm-12">
-									<div class="form-group">
+									    <div class="form-group">
                                             <label>Chapter</label>
                                             <select class="form-control" id="sel1" name="chapter_id">
 												@foreach($chapters as $chapter)
